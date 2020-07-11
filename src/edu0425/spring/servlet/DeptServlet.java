@@ -15,7 +15,7 @@ import edu0425.spring.vo.DeptInfo;
 public class DeptServlet extends HttpServlet {
 
 	/*
-	 * 1. 实现Servelt接口 2. 继承GenericServlet 实现service方法 3. 继承HttpServlet 实现doget
+	 * 1. 实现(implements)Servelt接口 2. 继承(extends)GenericServlet 实现service方法 3. 继承HttpServlet 实现doget
 	 * dopost
 	 */
 
@@ -26,6 +26,7 @@ public class DeptServlet extends HttpServlet {
 		deptService = new DeptServiceImpl();
 		List<DeptInfo> list = deptService.getDeptList();
 		req.setAttribute("list", list);
+		req.setAttribute("cnt", deptService.getDeptCount());
 		req.getRequestDispatcher("/dept.jsp").forward(req, resp);
 	}
 

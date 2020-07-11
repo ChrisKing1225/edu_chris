@@ -47,8 +47,5 @@ public class DeptInfo {
 	public String toString() {
 		return "DeptInfo [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
 	}
-	
-	
-
 
 }

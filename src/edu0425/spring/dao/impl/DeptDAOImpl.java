@@ -13,7 +13,7 @@ import edu0425.spring.vo.DeptInfo;
 
 public class DeptDAOImpl implements DeptDAO{
 
-	private static String url = "jdbc:mysql://172.16.80.54:3306/setsu0406";
+	private static String url = "jdbc:mysql://172.16.81.3:3306/setsu0406";
 	private static String user = "root";
 	private static String password = "root";
 	
@@ -55,8 +55,23 @@ public class DeptDAOImpl implements DeptDAO{
 
 	@Override
 	public Integer getDeptCount() {
-		// TODO Auto-generated method stub
-		return null;
+		Integer cnt = 0;
+		try {
+			// 注册驱动1 
+			Class.forName("com.mysql.jdbc.Driver");
+			// 获取连接
+			Connection conn = (Connection) DriverManager.getConnection(url, user, password);
+			// 创建Statement
+			Statement stmt = (Statement) conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS cnt FROM dept");
+			while(rs.next()) {
+				cnt = rs.getInt(1);//rs.getInt("cnt")
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return cnt;
 	}
 
 
